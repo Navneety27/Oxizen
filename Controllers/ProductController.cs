@@ -20,6 +20,12 @@ namespace Oxizen.API.Controllers
         {
             return Ok(_context.Products.ToList());
         }
+
+        [HttpGet("category/{name}")]
+        public IActionResult ByCategory(string name)
+        {
+            return Ok(_context.Products.Where(p=> p.Category == name).ToList());
+        }
     }
 }
         
