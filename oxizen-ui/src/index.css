@@ -1,0 +1,11 @@
+body{
+    margin:0;
+    font-family: "Segoe UI",sans-serif;
+    background: #e1f5fe;
+}
+
+:root{
+    --primary: #4fc3f7;
+    --dark: #0288d1;
+    --card: #ffffff;
+}

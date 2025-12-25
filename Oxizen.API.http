@@ -1,0 +1,6 @@
+@Oxizen.API_HostAddress = http://localhost:5195
+
+GET {{Oxizen.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
