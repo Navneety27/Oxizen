@@ -1,7 +1,7 @@
 ﻿import { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function ProductList({ category }) {
+export default function ProductList({ category, search }) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -12,6 +12,10 @@ export default function ProductList({ category }) {
         axios.get(url).then(res => setProducts(res.data));
     }, [category]);
 
+    const filtered = products.filter(p =>
+        p.name.toLowerCase().includes(search.toLowerCase())
+    );
+
     return (
         <div style={{
             display: "flex",
@@ -19,14 +23,13 @@ export default function ProductList({ category }) {
             gap: "25px",
             padding: "25px"
         }}>
-            {products.map(p => (
+            {filtered.map(p => (
                 <div key={p.id} style={{
                     background: "white",
                     borderRadius: "15px",
                     width: "240px",
                     boxShadow: "0 10px 25px rgba(0,0,0,.1)",
-                    overflow: "hidden",
-                    transition: "0.3s",
+                    overflow: "hidden"
                 }}>
 
                     <img
@@ -35,7 +38,7 @@ export default function ProductList({ category }) {
                     />
 
                     <div style={{ padding: "15px" }}>
-                        <h3 style={{ margin: "5px 0" }}>{p.name}</h3>
+                        <h3>{p.name}</h3>
                         <p style={{ color: "#0288d1", fontWeight: "bold" }}>
                             ₹{p.price}
                         </p>

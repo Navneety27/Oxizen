@@ -20,12 +20,12 @@ namespace Oxizen.API.Controllers
         public IActionResult AddToCart(CartItem item)
         {
             var existing = _context.CartItems
-                .FirstOrDefault(x => x.ProductID == item.ProductID);
+                .FirstOrDefault(x => x.ProductId == item.ProductId);
 
             if (existing != null)
                 existing.Quantity += 1;
             else
-                _context.CartItems.Add(new CartItem { ProductID = item.ProductID, Quantity = 1 });
+                _context.CartItems.Add(new CartItem { ProductId = item.ProductId, Quantity = 1 });
                 _context.SaveChanges();
             return Ok("Added to Cart");
         }
@@ -34,7 +34,7 @@ namespace Oxizen.API.Controllers
         public IActionResult GetCart()
         {
           var data = from c in _context.CartItems
-                   join p in _context.Products on c.ProductID equals p.Id
+                   join p in _context.Products on c.ProductId equals p.Id
                    select new
                    {
                        p.Name,
